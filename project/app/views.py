@@ -38,7 +38,7 @@ def login(request):
 
 
 def logout(request):
-    return redirect('login') 
+    return redirect(login) 
 
 def home(req):
     return render(req,'home.html')
@@ -54,11 +54,11 @@ def add(req):
         age = req.POST.get('age')
         phonenumber = req.POST.get('phonenumber')
         location = req.POST.get('location')
-        image = req.FILES.get('file')
+        file = req.FILES.get('file')
         user = req.user  
 
-        if age and phonenumber and location and image: 
-            Mydetails.objects.create(user=user, age=age, phonenumber=phonenumber, location=location, image=image)
+        if age and phonenumber and location and file: 
+            Mydetails.objects.create(user=user, age=age, phonenumber=phonenumber, location=location, file=file)
             return redirect('display')  
         else:
             return render(req, 'add.html', {'error': 'All fields are required.'})
