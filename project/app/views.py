@@ -30,7 +30,7 @@ def login(request):
 
         if user is not None:
             auth_login(request, user)  
-            return redirect('home')
+            return redirect(home)
         else:
             messages.error(request, 'Invalid username or password.')
 
@@ -44,27 +44,27 @@ def home(req):
     return render(req,'home.html')
 
 
-
 def display(req):
-    user = req.user 
+    user = req.user
     details = Mydetails.objects.filter(user=user)  
     return render(req, 'display.html', {'details': details})
-
 
 def add(req):
     if req.method == 'POST':
         age = req.POST.get('age')
         phonenumber = req.POST.get('phonenumber')
         location = req.POST.get('location')
-        file = req.FILES.get('file')  
-        user = req.user     
-        if age and phonenumber and location and file:  
-            Mydetails.objects.create(user=user, age=age, phonenumber=phonenumber, location=location, file=file)
+        image = req.FILES.get('file')
+        user = req.user  
+
+        if age and phonenumber and location and image: 
+            Mydetails.objects.create(user=user, age=age, phonenumber=phonenumber, location=location, image=image)
             return redirect('display')  
         else:
-            return render(req, 'display.html', {'error': 'All fields are required.'})
-    
-    return render(req, 'display.html')
+            return render(req, 'add.html', {'error': 'All fields are required.'})
+
+    return render(req, 'add.html')  
+
 
 
 def edit(req, id):
@@ -85,15 +85,15 @@ def edit(req, id):
             details.file = file
         
         details.save()
-        return redirect('view') 
+        return redirect(display) 
     
     return render(req, 'edit.html', {'details': details})  
 
-def delete(req, id):
+def delete(req,id):
     try:
         details = Mydetails.objects.get(pk=id)
         details.delete()
     except Mydetails.DoesNotExist:
         pass  
     
-    return redirect('display') 
+    return redirect(display) 

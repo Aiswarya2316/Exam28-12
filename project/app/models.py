@@ -6,7 +6,7 @@ class Mydetails(models.Model):
     age = models.IntegerField()
     phonenumber = models.IntegerField()
     location = models.TextField()
-    file = models.FileField(upload_to='Mydetails/')
+    image = models.FileField()
     uploaded_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

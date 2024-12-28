@@ -17,17 +17,32 @@
           <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" href="../">Add Details</a>
+                <a class="nav-link" href="../add">Add Details</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="../">Edit Details</a>
+                <a class="nav-link" href="../display">Display Details</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="../">Display Details</a>
-              </li>  
+                <a class="nav-link" href="../logout">Logout</a>
+              </li>   
             </ul>
           </div>
         </div>
       </nav>
+      <div>
+        <form action="" method="post" >
+            {% csrf_token %}
+        <h3>New Updates</h3>
+        <label for="age">Age</label>
+        <input type="number" name="age" value="{{details.age}}" placeholder="Enter your age"><br>
+        <label for="phonenumber">Phonenumber</label>
+        <input type="number" name="phonenumber" value="{{details.phonenumber}}" placeholder="Enter your phonenumber"><br>
+        <label for="location">Location</label>
+        <input type="text" name="location" value="{{details.location}}" placeholder="Enter your location"><br>
+        <label for="file">Files</label>
+        <input type="file" name="file" placeholder="Enter your files"><br>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
 </body>
 </html>
