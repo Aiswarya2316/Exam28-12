@@ -31,7 +31,7 @@
     </nav>
 
     <div class="container mt-5">
-        <h1>My Documents</h1>
+        <h1>My Details</h1>
 
         {% if details %}
             <ul class="list-group">
@@ -42,6 +42,7 @@
                         <strong>Phone Number:</strong> {{ detail.phonenumber }} <br>
                         <strong>Location:</strong> {{ detail.location }} <br>
                         <img src="{{detail.image.url}}" alt="image">
+                        <a href="{% url 'edit' detail.pk %}" class="btn btn-primary">Edit</a>
                         <a href="{% url 'delete' detail.pk %}" class="btn btn-danger">Delete</a>
                     </li>
                 {% endfor %}
